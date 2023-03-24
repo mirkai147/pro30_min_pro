@@ -10,10 +10,71 @@
 <!DOCTYPE html>
 <html>
 <head>
- <style>
-   .cls1 {text-decoration:none;}
-   .cls2{text-align:center; font-size:30px;}
-  </style>
+<style>
+.board_table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.board_table td {
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+.board_table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.board_table a {
+  color: #008CBA;
+  text-decoration: none; /* 밑줄 제거 */
+  font-weight: bold; /* 글자 두께 */
+}
+
+/* hover 스타일 */
+.board_table a:hover {
+  color: red;
+}
+
+/* 클릭한 링크 스타일 */
+.board_table a:active {
+  color: green;
+}
+.cls1 {text-decoration:none;}
+.cls2 {
+  text-align:center; font-size:30px;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #428bca;
+  border: 1px solid #428bca;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cls2:hover {
+  background-color: #428bca;
+  color: #ffffff;
+}
+
+.cls2:visited {
+  color: #428bca;
+}
+
+.cls2:visited:hover {
+  background-color: #428bca;
+  color: #ffffff;
+}
+
+/* .cls2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+} */
+</style>
   <meta charset="UTF-8">
   <title>글목록창</title>
 </head>
@@ -28,7 +89,7 @@
 	}
 </script>
 <body>
-<table align="center" border="1"  width="80%"  >
+<table align="center" border="1"  width="80%" class="board_table" >
   <tr height="10" align="center"  bgcolor="lightgreen">
      <td >글번호</td>
      <td >작성자</td>              
@@ -72,7 +133,7 @@
     </c:choose>
 </table>
 <!-- <a  class="cls1"  href="#"><p class="cls2">글쓰기</p></a> -->
-<a  class="cls1"  href="javascript:fn_articleForm('${isLogOn}','${contextPath}/board/articleForm.do', 
-                                                    '${contextPath}/member/loginForm.do')"><p class="cls2">글쓰기</p></a>
+<a  class="cls2"  href="javascript:fn_articleForm('${isLogOn}','${contextPath}/board/articleForm.do', 
+                                                    '${contextPath}/member/loginForm.do')"><h1>글쓰기</h1></a>
 </body>
 </html>

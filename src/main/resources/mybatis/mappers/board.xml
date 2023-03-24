@@ -31,6 +31,13 @@
       ]]>
   	</insert>
   	
+  	<!-- <insert id="insertNewArticle" parameterType="java.util.Map">
+  	  <![CDATA[
+      	INSERT into t_board(articleNO, id, title, content, imageFileName) 
+		VALUES(#{articleNO},#{id},#{title},#{content},null)
+      ]]>
+  	</insert> -->
+  	
   	<select id="selectNewArticleNO" resultType="int">
   	  <![CDATA[
   	  	SELECT nvl(max(articleNO), 0) + 1 from t_board	
@@ -63,11 +70,17 @@
   	  ]]>
   	</delete>
   	
-  	<!-- <insert id="insertNewImage">
+  	<insert id="insertNewImage" parameterType="java.util.Map">
+  		<foreach collection="list" item="item" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
+  			INTO t_imageFile(imageFileNO, imageFileName, articleNO, regDate)
+  			VALUES (#{item.imageFileNO},#{item.imageFileName},#{item.articleNO}, sysdate)
+  		</foreach>
+  	</insert>
+  	
+  	<select id="selectNewImageFileNO" resultType="int">
   	  <![CDATA[
-      	INSERT into t_board(articleNO, id, title, content, imageFileName) 
-		VALUES(#{articleNO},#{id},#{title},#{content},null)
-      ]]>
-  	</insert> -->
+  	  	SELECT nvl(max(imageFileNO), 0) from t_imageFile
+  	  ]]>
+  	</select>
   	
 </mapper>

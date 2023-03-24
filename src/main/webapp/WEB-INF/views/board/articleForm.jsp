@@ -28,11 +28,11 @@
   }
   
   
-/*   var cnt=1;
+  var cnt=1;
   function fn_addFile(){
 	  $("#d_file").append("<br>"+"<input type='file' name='file"+cnt+"' />");
 	  cnt++;
-  }   */
+  }
 
 </script>
  <title>글쓰기창</title>

@@ -24,19 +24,19 @@
       ]]>
   	</select>
   	
-  	<insert id="insertNewArticle" parameterType="java.util.Map"   >
+  	<!-- <insert id="insertNewArticle" parameterType="java.util.Map"   >
       <![CDATA[
       	INSERT into t_board(articleNO,  title, content, imageFileName, id) 
 		VALUES(#{articleNO},#{title},#{content},#{imageFileName},#{id})
       ]]>
-  	</insert>
+  	</insert> -->
   	
-  	<!-- <insert id="insertNewArticle" parameterType="java.util.Map">
+  	<insert id="insertNewArticle" parameterType="java.util.Map">
   	  <![CDATA[
       	INSERT into t_board(articleNO, id, title, content, imageFileName) 
 		VALUES(#{articleNO},#{id},#{title},#{content},null)
       ]]>
-  	</insert> -->
+  	</insert>
   	
   	<select id="selectNewArticleNO" resultType="int">
   	  <![CDATA[
@@ -80,6 +80,19 @@
   	<select id="selectNewImageFileNO" resultType="int">
   	  <![CDATA[
   	  	SELECT nvl(max(imageFileNO), 0) from t_imageFile
+  	  ]]>
+  	</select>
+  	
+  	<resultMap type="imageVO" id="imgResult">
+  		<result property="imageFileNO" column="imageFileNO" />
+  		<result property="articleNO" column="articleNO" />
+  		<result property="imageFileName" column="imageFileName" />
+  	</resultMap>
+  	
+  	<select id="selectImageFileList" resultMap="imgResult" parameterMap="int">
+  	  <![CDATA[
+  	  	SELECT * FROM t_imageFile 
+  	  	where articleNO=#{articleNO}
   	  ]]>
   	</select>
   	
